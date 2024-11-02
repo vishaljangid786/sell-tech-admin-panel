@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../images/admin-panel (1).png" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-2xl w-96 transform hover:scale-105 transition-transform duration-300">
+        <div id="errorMessage" class="hidden bg-red-100 text-red-700 p-2 rounded mb-4"></div>
+        <form id="loginForm" method="POST" action="../php/auth.php" class="space-y-6">
+            <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Admin Login</h2>
+            <div>
+                <label for="loginUsername" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" id="loginUsername" name="username" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+            </div>
+            <div>
+                <label for="loginPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="loginPassword" name="password" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+            </div>
+            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
+            <p class="text-center text-sm text-gray-600">Don't have an account? <a href="#" id="showSignup" class="font-medium text-indigo-600 hover:text-indigo-500">Create new account</a></p>
+        </form>
+        <form id="signupForm" class="hidden space-y-6" method="POST" action="../php/signup.php">
+            <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Admin Signup</h2>
+            <div>
+                <label for="signupUsername" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" id="signupUsername" name="username" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+            </div>
+            <div>
+                <label for="signupEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="signupEmail" name="email" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+            </div>
+            <div>
+                <label for="signupPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="signupPassword" name="password" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+            </div>
+            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Signup</button>
+            <p class="text-center text-sm text-gray-600">Already have an account? <a href="#" id="showLogin" class="font-medium text-indigo-600 hover:text-indigo-500">Login</a></p>
+        </form>
+    </div>
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        const errorMessage = document.getElementById('errorMessage');
+
+        showSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+        });
+
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+        });
+
+        // Function to display error messages
+        function displayError(message) {
+            errorMessage.innerText = message;
+            errorMessage.classList.remove('hidden');
+        }
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>
